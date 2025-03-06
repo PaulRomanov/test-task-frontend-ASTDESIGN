@@ -1,21 +1,20 @@
 <template>
-  <div class="flex items-center justify-center h-screen text-center ">
-    <div>
-      <div class="mb-8 font-bold text-3xl flex items-center justify-center">
-        <Icon name="material-symbols:shopping-basket-outline" class="mr-4 text-pink-600" /> {{ welcome }}
-      </div>
-      <div class="text-2xl ">
-        {{ believe }}
-      </div>
-    </div>
+  <div class="flex flex-col min-h-screen">
+    <Header />
+    <main class="flex-grow flex justify-center items-center">
+      <NuxtPage />
+    </main>
+    <Footer />
+    <ToastNotification ref="toastRef" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { useApplicationStore } from '~/store/application'
-import { apiPath } from '~/utils/api'
+import { ref, provide } from 'vue';
+import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
+import ToastNotification from '@/components/ToastNotification.vue';
 
-const { welcome } = useApplicationStore()
-
-const { believe } = await $fetch(apiPath.hello)
+const toastRef = ref();
+provide('showToast', () => toastRef.value?.showToast());
 </script>

@@ -8,6 +8,11 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxtjs/google-fonts',
   ],
+  runtimeConfig: {
+    public: {
+      cacheTTL: 60 * 60, // 1 час кеширования
+    },
+  },
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
   compatibilityDate: '2024-11-01',
